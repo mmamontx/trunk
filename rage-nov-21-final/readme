@@ -1,0 +1,2 @@
+  *.h  commented out variables are declared in *.c sources and
+restricted to use at a global scope.

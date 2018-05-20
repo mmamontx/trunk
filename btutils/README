@@ -1,0 +1,10 @@
+  The  purpose of btutils distribution is to support Baget 62-04 within specific
+context.
+
+  Instructions for installing the package.
+
+  Before  installing make sure to have Baget 62-04 headers and bt23d-gcc in /bin
+directory. Then execute following:
+  ./configure --host=bt23d CFLAGS="-I*"
+  make
+  The * here is directory(ies) containing headers.
