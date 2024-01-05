@@ -1,1 +1,0 @@
-SUBDIRS = btcheck btread btwrite

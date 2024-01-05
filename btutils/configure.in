@@ -1,6 +1,0 @@
-AC_INIT
-AM_INIT_AUTOMAKE(btutils, 0.1)
-AC_PATH_PROGS(PERL, perl)
-AC_PROG_CC
-AC_PROG_INSTALL
-AC_OUTPUT(Makefile src/Makefile src/btcheck/Makefile src/btread/Makefile src/btwrite/Makefile)
