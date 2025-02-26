@@ -5,6 +5,8 @@ alsa (C) - user-level app that works with ALSA subsystem. Determines musical not
 
 balloc (C) - memory allocator.
 
+balloc2 (C++) - memory allocator.
+
 co (Perl) - C compiler.
 
 coursera (Python) - 69 completed assignments covering various algorithms in Data Structures and Algorithms specialization on Coursera.
