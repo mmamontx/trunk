@@ -5,6 +5,8 @@ Please find class description in the generated docs. There are also some extra m
 # Building and testing
 
 cmake -S . -B build
+
 cmake --build build
+
 cd build && ctest
 
