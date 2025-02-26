@@ -105,8 +105,9 @@ TEST( balloc2Test, ConcurrentBlockAllocation ) {
   for ( int i = 0; i < N_THREADS; i++ )
     pthread_join( user_threads[i], NULL );
 
-  // Request one more block: if it's there it means that the allocation logic got overlapped,
-  // at some point leading to some of the threads getting an identical block (in a best scenario).
+  // Request one more block: if it's there it means that the allocation logic
+  // got overlapped, at some point leading to some of the threads getting an
+  // identical block (in a best scenario).
   ptr = ba_shared->balloc( BLOCK_SIZE ); // Request a single block
 
   delete ba_shared;
@@ -126,14 +127,13 @@ void * user_thread2( void * ptr ) {
 }
 
 TEST( balloc2Test, ConcurrentBlockDeallocation ) {
-  void *       ptr;
   bool         result;
   unsigned int thread_id[N_THREADS];
 
   ba_shared = new balloc2( BLOCK_SIZE, N_THREADS ); // 1 block per thread
 
   for ( int i = 0; i < N_THREADS; i++ )
-    ptr = ba_shared->balloc( BLOCK_SIZE );
+    ba_shared->balloc( BLOCK_SIZE );
 
   pthread_t user_threads[N_THREADS];
 
