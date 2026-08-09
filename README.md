@@ -1,6 +1,8 @@
 # trunk
 Accumulated code from education and job projects:
 
+3dfx (C, Python) - sensors for automotive.
+
 alsa (C) - user-level app that works with ALSA subsystem. Determines musical note based on audio input using either FFT or Piyavsky method.
 
 balloc (C) - memory allocator.
