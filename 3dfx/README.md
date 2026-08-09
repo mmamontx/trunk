@@ -11,6 +11,14 @@ https://github.com/kdienes/madgwick-ahrs/tree/master/MadgwickAHRS
 
 Before project configuration and build, be sure to set the correct chip target using `idf.py set-target <chip_name>`.
 
+The build has to fail when building the project for the first time.
+Once it has collected the components (during the build), introduce the following change to managed_components/espressif__mpu6050/CMakeLists.txt:
+
+```
+#REQUIRES ${REQ}
+REQUIRES driver esp_driver_gpio
+```
+
 ### Build and Flash
 
 Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
