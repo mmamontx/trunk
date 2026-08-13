@@ -11,12 +11,10 @@ https://github.com/kdienes/madgwick-ahrs/tree/master/MadgwickAHRS
 
 Before project configuration and build, be sure to set the correct chip target using `idf.py set-target <chip_name>`.
 
-The build has to fail when building the project for the first time.
-Once it has collected the components (during the build), introduce the following change to managed_components/espressif__mpu6050/CMakeLists.txt:
+Patch the gyro lib:
 
 ```
-#REQUIRES ${REQ}
-REQUIRES driver esp_driver_gpio
+patch -p0 <mpu6050.patch
 ```
 
 ### Build and Flash
@@ -24,3 +22,9 @@ REQUIRES driver esp_driver_gpio
 Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 (To exit the serial monitor, type ``Ctrl-]``.)
+
+OR
+
+1. Run `idf.py build`, `cd build`, `python3 -m http.server 8000 --bind 0.0.0.0`.
+2. Bring-up a Wi-Fi AP with address 10.3.13.1.
+3. Power-on the device, wait for the LED to blink green, then push the BOOT button (the left one).

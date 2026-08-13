@@ -1,0 +1,41 @@
++++ managed_components/espressif__mpu6050/CMakeLists.txt
+@@ -7,5 +7,5 @@ endif()
+ idf_component_register(
+     SRCS "mpu6050.c"
+     INCLUDE_DIRS "include"
+-    REQUIRES ${REQ}
++    REQUIRES driver esp_driver_gpio
+ )
++++ managed_components/espressif__mpu6050/include/mpu6050.h
+@@ -394,6 +394,8 @@ esp_err_t mpu6050_get_temp(mpu6050_handle_t sensor, mpu6050_temp_value_t *const
+ esp_err_t mpu6050_complimentory_filter(mpu6050_handle_t sensor, const mpu6050_acce_value_t *const acce_value,
+                                        const mpu6050_gyro_value_t *const gyro_value, complimentary_angle_t *const complimentary_angle);
+ 
++esp_err_t mpu6050_dlpf_cfg(mpu6050_handle_t sensor, uint8_t dlpf_cfg);
++
+ #ifdef __cplusplus
+ }
+ #endif
++++ managed_components/espressif__mpu6050/mpu6050.c
+@@ -16,6 +16,7 @@
+ #define RAD_TO_DEG                  57.27272727f /*!< Radians to degrees */
+ 
+ /* MPU6050 register */
++#define MPU6050_DLPF_CONFIG         0x1Au
+ #define MPU6050_GYRO_CONFIG         0x1Bu
+ #define MPU6050_ACCEL_CONFIG        0x1Cu
+ #define MPU6050_INTR_PIN_CFG         0x37u
+@@ -64,6 +65,13 @@ static esp_err_t mpu6050_write(mpu6050_handle_t sensor, const uint8_t reg_start_
+     return ret;
+ }
+ 
++esp_err_t mpu6050_dlpf_cfg(mpu6050_handle_t sensor, uint8_t val)
++{
++    uint8_t dlpf_cfg = val;
++    esp_err_t ret = mpu6050_write(sensor, MPU6050_PWR_MGMT_1, &dlpf_cfg, 1);
++    return ret;
++}
++
+ static esp_err_t mpu6050_read(mpu6050_handle_t sensor, const uint8_t reg_start_addr, uint8_t *const data_buf, const uint8_t data_len)
+ {
+     mpu6050_dev_t *sens = (mpu6050_dev_t *) sensor;
